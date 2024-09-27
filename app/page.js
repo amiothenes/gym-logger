@@ -13,14 +13,19 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <button className={styles.edit}>Edit</button>
-      <header className={styles.header}>Journal</header>
-      {workouts.map((workout) => (
+      <div className="header">
+        <button className={styles.edit}>Edit</button>
+        <header className={styles.header}>Journal</header>
+      </div>
+      <div className="body">
+        <div className="training-num"></div>
+        {workouts.map((workout) => (
         <div key={workout.id} className={styles.workoutItem}> 
           <div className={styles.date}>{workout.date}</div>
           <div className={styles.description}>{workout.description}</div>
         </div>
       ))}
+      </div>
     </main>
   );
 }
