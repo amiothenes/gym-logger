@@ -7,6 +7,8 @@ export default function Home() {
         id: 1,
         title: "Workout 1",
         duration: "1h 30m",
+        start_time: "2016-09-01T12:00:00.000000Z", // format: 2016-09-01T12:00:00.000000Z
+        end_time: "2016-09-01T13:30:00.000000Z",
         volume: "100kg",
         exercises: {
             1: {
@@ -53,7 +55,9 @@ export default function Home() {
             <h3>Overview</h3>
             <div className="overview-row">
                 <p className={styles.overviewText}>{workout.title}</p>
-                {/* here add start time, end time, duration, bodyweight */}
+                <p className={styles.overviewText}>Start Time: {convertTime(workout.start_time)}</p>
+                <p className={styles.overviewText}>End Time: {convertTime(workout.end_time)}</p>
+                <p className={styles.overviewText}>Duration: {workout.duration}</p>
                 <p className={styles.overviewText}>You have completed {Object.keys(workout.exercises).length} workouts today.</p>
                 <p className={styles.overviewText}>Your bodyweight is {workout.bodyweight}kg.</p>
             </div>
@@ -67,4 +71,10 @@ export default function Home() {
       </div>
     </main>
   );
+}
+
+function convertTime(time) {
+    const date = new Date(time);
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+    return date.toLocaleDateString(undefined, options);
 }
